@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#7a5cff">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon.svg">
+<meta name="apple-mobile-web-app-title" content="ABC Write">
+<meta name="description" content="ABC Write & Practice: trace letters, draw, play quizzes and win stickers. Free, no login, no ads.">
+<title>ABC Write &amp; Practice</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="sky" aria-hidden="true">
+<div class="sun"><div class="face">&#128526;</div></div>
+<div class="cloud c1"></div><div class="cloud c2"></div><div class="cloud c3"></div>
+<div class="float f1">&#127880;</div><div class="float f2">&#11088;</div><div class="float f3">&#127880;</div>
+<div class="float f4">&#127752;</div><div class="float f5">&#129419;</div><div class="float f6">&#11088;</div>
+<div class="hills"></div>
+</div>
+<div id="start">
+<div class="start-card">
+<div class="rainbow-arc"></div>
+<h1><span>A</span><span>B</span><span>C</span><br><em>Write!</em></h1>
+<p>Trace letters, draw, play games and win stickers!<br>Start at the <b style="color:#1fae5b">green dot</b> and follow the arrows.</p>
+<div class="who">
+<div class="mascot big" id="mascot0">&#129417;</div>
+</div>
+<button class="btn big" id="goBtn">&#9654; Let's Play!</button>
+</div>
+</div>
+<div id="app">
+<header>
+<div class="logo"><span>A</span><span>B</span><span>C</span><small>Write &amp; Practice</small></div>
+<div class="hud">
+<div class="pill" id="streakPill" title="Letters in a row">&#128293; <span id="streak">0</span></div>
+<div class="pill stars">&#11088; <span id="starCount">0</span>/26</div>
+<button class="pill iconbtn" id="bStick" title="Sticker book">&#127942;</button>
+<button class="pill iconbtn" id="bMute" title="Sound on/off">&#128266;</button>
+</div>
+</header>
+<div id="prog"><div id="progFill"></div><div id="progTxt"></div></div>
+<nav id="modes">
+<button class="mode on" data-m="trace"><i>&#9997;&#65039;</i>Trace</button>
+<button class="mode" data-m="draw"><i>&#127912;</i>Draw</button>
+<button class="mode" data-m="quiz"><i>&#10067;</i>Quiz</button>
+<button class="mode" data-m="case"><i>&#119912;</i>Aa</button>
+</nav>
+<div id="strip"></div>
+<div id="stage">
+<div id="board">
+<div id="msg">Let's write!</div>
+<div id="wrap"><canvas id="cv"></canvas></div>
+<!-- free-draw tools -->
+<div id="tools" class="hidden">
+<div id="palette"></div>
+<div id="sizes">
+<button data-s="8" class="sz"><b style="width:8px;height:8px"></b></button>
+<button data-s="16" class="sz on"><b style="width:16px;height:16px"></b></button>
+<button data-s="28" class="sz"><b style="width:28px;height:28px"></b></button>
+</div>
+<button class="tool" id="tRainbow" title="Rainbow pen">&#127752;</button>
+<button class="tool" id="tStamp" title="Star stamps">&#11088;</button>
+<button class="tool" id="tUndo" title="Undo">&#8630;</button>
+<button class="tool" id="tWipe" title="Clear all">&#128465;&#65039;</button>
+</div>
+<!-- quiz overlay -->
+<div id="quiz" class="hidden">
+<div class="q-pic" id="qPic">?</div>
+<div class="q-ask" id="qAsk">Which letter does this start with?</div>
+<div class="q-opts" id="qOpts"></div>
+</div>
+</div>
+<div id="side">
+<div id="mascotBox"><div class="mascot" id="mascot">&#129417;</div><div class="bubble" id="bubble">Hi friend!</div></div>
+<div id="pic"><div class="emo hid" id="emo">?</div><div class="word" id="word"></div><div class="hint" id="hint">Finish the letter to see the picture!</div></div>
+<div class="btns">
+<button class="btn b-show" id="bShow">&#9997; Show me</button>
+<button class="btn b-clear" id="bClear">&#8635; Again</button>
+<button class="btn b-prev" id="bPrev">&#9664; Back</button>
+<button class="btn b-next" id="bNext">Next &#9654;</button>
+</div>
+</div>
+</div>
+</div>
+<!-- sticker book -->
+<div id="book" class="overlay hidden">
+<div class="book-card">
+<button class="x" id="bookX">&#10005;</button>
+<h2>&#127942; My Sticker Book</h2>
+<div id="level"></div>
+<div id="stickers"></div>
+<button class="btn b-clear" id="resetBtn" style="margin-top:10px;font-size:13px;padding:6px 12px">Start over</button>
+</div>
+</div>
+<!-- rainbow finish -->
+<div id="win" class="overlay hidden">
+<div class="book-card win-card">
+<div class="trophy">&#127942;</div>
+<h2>YOU DID IT!</h2>
+<p>All 26 letters done. You are an ABC Superstar!</p>
+<button class="btn b-next" id="winX">&#127881; Yay!</button>
+</div>
+</div>
+<canvas id="fx"></canvas>
+<div id="cheer">Great job!</div>
+<script src="app.js"></script>
+</body>
+</html>
