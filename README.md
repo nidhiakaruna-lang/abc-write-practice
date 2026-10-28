@@ -1,5 +1,11 @@
 # ABC Write & Practice
 
-A free, kid-safe app for learning the alphabet: trace letters, free-draw, play the picture quiz, and learn upper/lower case. Win stickers as you go.
+Free kids' letter-tracing app. No login, no account, works offline once opened.
 
-No login, no ads, no tracking. Progress is stored only on the child's own device. Works offline and installs to a phone home screen.
+Live: https://nidhiakaruna-lang.github.io/abc-write-practice/
+
+Tabs: Trace, Draw, Quiz, Aa, 123, Missing, Spell, Say It, Phonics, Vowels, Maths, Paint, Play.
+Languages (tap the globe/flag in the top bar): English, Francais, Deutsch, Japanese, Chinese.
+Spell, Say It, Phonics, Vowels and Maths teach English and stay in English.
+
+Files: index.html (page), css1-6.css (styles), app1-10.js (game, loaded in order), lang.js (languages), sw.js (offline), manifest.webmanifest + icons/icon.svg (install).
