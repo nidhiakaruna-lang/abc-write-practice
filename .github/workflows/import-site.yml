@@ -1,0 +1,39 @@
+name: import-site
+on:
+  push:
+    paths:
+      - '.github/workflows/import-site.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download and verify the site bundle
+        run: |
+          set -e
+          PAGE="https://tmpfiles.org/wWAiLCrzNnbe/abc_site.zip"
+          WANT="663cdd90cf9b5d26b632be7aa2d63723804fa5133204381574a0f935ac3c2b05"
+          for i in 1 2 3 4 5; do
+            LINK=$(curl -s -m 30 -A "Mozilla/5.0" "$PAGE" | grep -o 'https://tmpfiles.org/dl/[^"]*' | head -1 || true)
+            if [ -n "$LINK" ]; then curl -s -L -m 120 -A "Mozilla/5.0" -o site.zip "$LINK" || true; fi
+            if [ -f site.zip ] && [ "$(sha256sum site.zip | cut -d' ' -f1)" = "$WANT" ]; then echo "checksum verified"; break; fi
+            rm -f site.zip
+            sleep 5
+          done
+          if [ ! -f site.zip ]; then echo "download or checksum failed"; exit 1; fi
+      - name: Replace the site files
+        run: |
+          set -e
+          mkdir new
+          unzip -q site.zip -d new
+          find . -mindepth 1 -maxdepth 1 ! -name .git ! -name .github ! -name new ! -name site.zip -exec rm -rf {} +
+          cp -a new/. .
+          rm -rf new site.zip
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Publish full ABC Write & Practice app: 13 tabs, English/French/German, offline install" || echo "nothing to commit"
+          git push
